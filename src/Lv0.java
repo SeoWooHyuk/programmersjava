@@ -45,6 +45,70 @@ public class Lv0 {
     //구매한 옷의 가격 price가 주어질 때, 지불해야 할 금액을 return 하도록 solution 함수를 완성해보세요.
     public int solution5(int price) {
         int answer = 0;
+      
+        if(price < 100000){
+            answer = price;
+        }
+        else if(price >= 100000 && price < 300000)
+        {
+            answer = (price * (100-5)/100);
+        }else if(price >= 300000 && price < 500000 )
+        {
+           answer = (price * (100-10))/100;
+        }
+        else if(price >= 500000 )
+        {
+            answer = (price * (100-20))/100;
+        }
         return answer;
     }
+
+    //점의 위치 구하기
+    //사분면은 한 평면을 x축과 y축을 기준으로 나눈 네 부분입니다. 사분면은 아래와 같이 1부터 4까지 번호를매깁니다.
+    public int solution6(int[] dot) {
+        int answer = 0;
+        if(dot[0] > 0 && dot[1] > 0)
+        {
+            answer = 1;
+            System.out.println("1사분면입니다.");
+        }else if(dot[0] < 0 && dot[1] > 0 )
+        {
+            answer = 2;
+            System.out.println("2사분면입니다.");
+        }else if(dot[0] < 0 && dot[1] < 0)
+        {
+            answer = 3;
+            System.out.println("3사분면입니다.");
+        }else 
+        {
+            answer = 3;
+            System.out.println("4사분면입니다.");
+        }
+        return answer;
+    }
+
+    //특정 문자 제거하기
+    public String solution7(String my_string, String letter) {
+
+        //방법1
+        StringBuilder sb = new StringBuilder();
+
+        char[] arr = my_string.toCharArray();
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if(arr[i] != letter.charAt(0)){
+                sb.append(arr[i]);
+            }
+        }
+
+        //방법2
+        String answer = my_string.replace(letter,"");
+        return answer;
+    }
+
+    public int solution(int[] numbers) {
+        int answer = 0;
+        return answer;
+    }vmfhrmf
 }
