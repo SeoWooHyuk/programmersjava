@@ -110,5 +110,5 @@ public class Lv0 {
     public int solution(int[] numbers) {
         int answer = 0;
         return answer;
-    }vmfhrmf
+    }
 }
