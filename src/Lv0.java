@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Lv0 {
 
     //나이 츨력
@@ -107,8 +111,197 @@ public class Lv0 {
         return answer;
     }
 
-    public int solution(int[] numbers) {
+    //최대값 만들기
+    public int solution8(int[] numbers) {
         int answer = 0;
+        ArrayList<Integer> list = new  ArrayList<Integer>(); 
+        
+        for (int i = 0; i < numbers.length; i++) {
+        list.add(numbers[i]);
+        }
+        Collections.sort(list);
+        Collections.reverse(list);
+        answer = list.get(0) * list.get(1);
+
+        return answer;
+    }
+
+    //중복된 숫자 개수
+    public int solution9(int[] array, int n) {
+        int answer = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            
+            if(array[i] == n)
+            {
+                answer++;
+            }
+        }
+        return answer;
+    }
+
+
+    //머쓱이보다 키 큰 사람
+    public int solution10(int[] array, int height) {
+        int answer = 0;
+        for (int i = 0; i < array.length; i++) {
+
+            if(array[i] > height)
+            {
+                answer++;
+            }
+            
+        }
+        return answer;
+    }
+
+    //문자 반복 출력하기
+    public String solution11(String my_string, int n) {
+        String answer = "";
+
+        // char[] result = my_string.toCharArray();
+        String[] result =  new String[my_string.length()];
+
+        for (int i = 0; i < result.length; i++) {
+            result[i] = my_string.substring(i, i+1);
+            
+        }
+
+
+
+        for (int i = 0; i < result.length; i++) {
+
+            for (int j = 0; j < n; j++) {
+                answer += result[i];
+            }
+        }
+
+
+        return answer;
+    }
+
+    //순서쌍의 개수
+    public int solution12(int n) {
+        int answer = 0;
+
+        // for (int i = 1; i <= n; i++) {
+        //     for (int j = 1; j <= n; j++) {
+        //         if((i*j) == n )
+        //         {
+        //             answer++;
+        //         }
+        //     }  
+        // }
+
+        for (int i = 1; i <= n; i++) {
+            if(n%i == 0)
+            {
+                answer++;
+            }
+        }
+        return answer;
+    }
+
+
+    //배열자르기
+    public int[] solution13(int[] numbers, int num1, int num2) {
+        int[] answer =  new int[numbers.length];
+
+
+        //방법1
+        answer = Arrays.copyOfRange(numbers, num1, num2 + 1 );
+
+
+        //방법2
+        int[] answer2 =  new int[numbers.length];
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < numbers.length; i++) {
+            result.append(String.valueOf(numbers[i]));
+        }
+        int posistion =   result.indexOf(String.valueOf(num1));
+        
+        char[] test = result.substring(posistion +1 , num2 +1).toCharArray();
+        
+        for (int i = 0; i < test.length; i++) {
+            answer2[i] = Character.getNumericValue(test[i]);  
+        }
+        return answer;
+    }
+
+
+
+    //모음제거
+    public String solution14(String my_string) {
+        String answer = my_string.replaceAll("[a,e,i,o,u]","");
+        return answer;
+    }
+
+
+    //배열2배만들기
+    public int[] solution15(int[] numbers) {
+        int[] answer = new int[numbers.length];
+
+        for (int i = 0; i < numbers.length; i++) {
+            answer[i] =  numbers[i] * 2;
+        }
+        return answer;
+    }
+
+    //중앙값 구하기
+    public int solution16(int[] array) {
+        Arrays.sort(array);
+
+        int answer = array[array.length / 2];
+        return answer;
+    }
+
+    //숨어있는 숫자의 덧셈
+    public int solution17(String my_string) {
+
+        String test =  my_string.replaceAll("[^0-9]", "");
+        int answer = 0;
+
+        char[] test1 = test.toCharArray();
+
+        for (int i = 0; i < test.length(); i++) {
+            answer = answer + Character.getNumericValue(test1[i]);
+        }
+        
+
+        return answer;
+    }
+
+    //짝수는 싫어요
+    public int[] solution18(int n) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        
+
+        for (int i = 0; i <= n; i++) {
+            if(i%2 == 1)
+            {
+                list.add(i);
+            }
+        }
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        return answer;
+    
+    }
+
+    //올알이
+    public int solution19(String[] babbling) {
+        int answer = 0;
+
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < babbling.length; i++) {
+          builder.append(babbling[i].replace("aya",""))  ;
+            System.out.println(builder.toString());
+        }
         return answer;
     }
 }
