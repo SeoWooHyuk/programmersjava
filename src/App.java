@@ -1,5 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
+        
         Lv0 lv0 = new Lv0();
         System.out.println( lv0.solution1(40) + " |나이출력|");
         System.out.println( lv0.solution2(10,3) + " |양꼬치|");
@@ -42,5 +43,21 @@ public class App {
 
         String[] babbling = {"aya", "yee", "u", "maa", "wyeoo"};
         System.out.println( lv0.solution19(babbling) + " |옹알이|");
+
+        System.out.println( lv0.solution20(4) + " |정수를 나선형으로 배치하기|"); //보류
+
+
+        Lv1 lv1 = new Lv1();
+        System.out.println( lv1.solution(3) + " |짝수와 홀수|");
+
+        System.out.println( lv1.solution1(10) + " |나머지가 1의 되는 수 찾기|");
+
+        System.out.println( lv1.solution2("1234") + " |문자열을 정수로 바꾸기|");
+
+        System.out.println( lv1.solution3(121) + " |정수 제곱근 판멸|");
+
+
+        
+
     }
 }
