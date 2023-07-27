@@ -296,12 +296,42 @@ public class Lv0 {
     public int solution19(String[] babbling) {
         int answer = 0;
 
-        StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < babbling.length; i++) {
-          builder.append(babbling[i].replace("aya",""))  ;
-            System.out.println(builder.toString());
+            babbling[i] = babbling[i].replace("aya", "0");
+            babbling[i] = babbling[i].replace("woo", "0");
+            babbling[i] = babbling[i].replace("ye", "0");
+            babbling[i] = babbling[i].replace("ma", "0");
+            babbling[i] = babbling[i].replace("0", "");
+            if(babbling[i].equals("")) answer++;
+        }
+
+        //공부하자 
+        for(int i=0; i<babbling.length; i++){
+            if(babbling[i].matches("^(aya(?!aya)|ye(?!ye)|woo(?!woo)|ma(?!ma))+$")){
+                answer++;
+            }
+        }
+
+        
+        return answer;
+    }
+
+    //정수를 나선형으로 배치하기
+    public int[][] solution20(int n) {
+        int[][] answer = new int[n][n];
+
+        for (int i = 0; i < answer.length; i++) {
+            for (int j = 0; j < answer.length; j++) {
+                
+
+
+                    //나중에 보류
+
+
+            }
         }
         return answer;
     }
+
 }
