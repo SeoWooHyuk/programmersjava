@@ -1,8 +1,10 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Lv1 {
@@ -121,7 +123,7 @@ public class Lv1 {
 
     //개인정보 수집 유효기간1
     public int[] solution6(String today, String[] terms, String[] privacies) {
-        int[] answer = {};
+          List<Integer> answer = new ArrayList<>();
 
         Map<String, Integer> termData = new HashMap<>();  //terms DATA 저장
         int tday =  Integer.parseInt(today.replace(".", "")); //오늘날짜
@@ -132,24 +134,58 @@ public class Lv1 {
             termData.put(type, data);
         }
 
-        System.out.println(termData.toString()); //terms 데이터 출력
-        System.out.println(tday);  //오늘 날짜
-
-        String day = today.replace(".", "");
-
         for (int i = 0; i < privacies.length; i++) {
             int date =  Integer.parseInt(privacies[i].replace(".","").split(" ")[0])  ;
             String type = privacies[i].split(" ")[1];
 
-            int year =  tday/10000;
-            int month = (tday%1000)/100;
-            System.out.println(year);
-            System.out.println(month);
+            int year =  date/10000;
+            int month = (date%1000)/100;
+            int day = date%100;
+
+             // 기본 연산
+             month += termData.get(type); // 월수 더하기
+             day -= 1; // 일수 -1 (28일 > 27일)
+
+            if(day == 0) {
+                // 만약 일수를 뺀 탓에 0이 되었으면 말일(28)로 변경
+                month -= 1;
+                day += 28;
+            }
+            if(month > 12) {
+                // 12월을 넘어갔으면 햇수 증가
+                year += (month/12);
+                month = month - 12*(month/12);
+            }
+            if(month == 0) {
+                // 위 과정에서 month가 0이 되었으면 직전해 12월로 변경
+                month = 12;
+                year -= 1;
+            }
+
+            date = year*10000 + month*100 + day;
+            System.out.println(date + ":" + tday);
+            if(date < tday) {
+                System.out.println(i);
+                answer.add(i);
+            }
+
+            
 
         }
+
+         // 정답 추출
+        int[] answerArr = new int[answer.size()];
+        for(int i=0; i<answer.size(); i++) {
+
+        answerArr[i] = answer.get(i)+1;
+        System.out.println(answerArr[i]);
+
+        }
+
         
-        return answer;
+        return answerArr;
     }
+
 
 
     //개인정보 수집 유효기간2
@@ -196,6 +232,5 @@ public class Lv1 {
         
         return answer;
     }
-
 
 }
