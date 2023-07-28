@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        
+        /* 
         Lv0 lv0 = new Lv0();
         System.out.println( lv0.solution1(40) + " |나이출력|");
         System.out.println( lv0.solution2(10,3) + " |양꼬치|");
@@ -45,7 +45,7 @@ public class App {
         System.out.println( lv0.solution19(babbling) + " |옹알이|");
 
         System.out.println( lv0.solution20(4) + " |정수를 나선형으로 배치하기|"); //보류
-
+        */
 
         Lv1 lv1 = new Lv1();
         System.out.println( lv1.solution(3) + " |짝수와 홀수|");
@@ -56,8 +56,17 @@ public class App {
 
         System.out.println( lv1.solution3(121) + " |정수 제곱근 판멸|");
 
+        System.out.println( lv1.solution4(118372) + " |정수 내림차순 정렬하기|");
+
+        System.out.println( lv1.solution5(11) + " |하샤드 수|");
+
+        String[] terms = {"A 6", "B 12", "C 3"};
+        String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
+        System.out.println( lv1.solution6("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간|");
+
 
         
 
     }
+    
 }

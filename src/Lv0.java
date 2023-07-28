@@ -83,7 +83,7 @@ public class Lv0 {
         {
             answer = 3;
             System.out.println("3사분면입니다.");
-        }else 
+        }else
         {
             answer = 3;
             System.out.println("4사분면입니다.");
