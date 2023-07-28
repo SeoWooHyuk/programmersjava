@@ -64,7 +64,7 @@ public class App {
         String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
         System.out.println( lv1.solution6("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간1|");
 
-       // System.out.println( lv1.solution6_1("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간2|");
+        // System.out.println( lv1.solution6_1("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간2|");
 
 
         

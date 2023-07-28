@@ -13,7 +13,7 @@ public class Lv1 {
         String answer = "";
 
         answer = (num%2 == 0) ? "Even":"Odd";
-  
+
         return answer;
     }
 
@@ -123,7 +123,7 @@ public class Lv1 {
 
     //개인정보 수집 유효기간1
     public int[] solution6(String today, String[] terms, String[] privacies) {
-          List<Integer> answer = new ArrayList<>();
+        List<Integer> answer = new ArrayList<>();
 
         Map<String, Integer> termData = new HashMap<>();  //terms DATA 저장
         int tday =  Integer.parseInt(today.replace(".", "")); //오늘날짜
@@ -133,6 +133,8 @@ public class Lv1 {
             int data = Integer.parseInt(terms[i].split(" ")[1]);
             termData.put(type, data);
         }
+
+        System.out.println(termData);
 
         for (int i = 0; i < privacies.length; i++) {
             int date =  Integer.parseInt(privacies[i].replace(".","").split(" ")[0])  ;
@@ -161,25 +163,21 @@ public class Lv1 {
                 month = 12;
                 year -= 1;
             }
-
+            System.out.println(date + ":" + termData.get(type));
             date = year*10000 + month*100 + day;
             System.out.println(date + ":" + tday);
             if(date < tday) {
-                System.out.println(i);
                 answer.add(i);
             }
 
-            
-
         }
 
-         // 정답 추출
+        // 정답 추출
         int[] answerArr = new int[answer.size()];
         for(int i=0; i<answer.size(); i++) {
 
         answerArr[i] = answer.get(i)+1;
-        System.out.println(answerArr[i]);
-
+        System.out.print(answerArr[i]);
         }
 
         
@@ -223,10 +221,6 @@ public class Lv1 {
             }else{
                 System.out.println("유효기간 안지남");
             }
-
-            System.out.println();
-
-
 
         }
         
