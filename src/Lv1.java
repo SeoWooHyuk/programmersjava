@@ -8,6 +8,29 @@ import java.util.List;
 import java.util.Map;
 
 public class Lv1 {
+
+
+    public Lv1()
+    {
+        System.out.println( solution(3) + " |짝수와 홀수|");
+
+        System.out.println( solution1(10) + " |나머지가 1의 되는 수 찾기|");
+
+        System.out.println( solution2("1234") + " |문자열을 정수로 바꾸기|");
+
+        System.out.println( solution3(121) + " |정수 제곱근 판멸|");
+
+        System.out.println( solution4(118372) + " |정수 내림차순 정렬하기|");
+
+        System.out.println( solution5(11) + " |하샤드 수|");
+
+        String[] terms = {"A 6", "B 12", "C 3"};
+        String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
+        System.out.println( solution6("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간1|");
+
+        System.out.println( solution6_1("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간2|");
+    }
+
     //짝수와 홀수
     public String solution(int num) {
         String answer = "";
@@ -187,7 +210,7 @@ public class Lv1 {
 
 
     //개인정보 수집 유효기간2
-    public int[] solution6_1(String today, String[] terms, String[] privacies) throws Exception {
+    public int[] solution6_1(String today, String[] terms, String[] privacies)  {
         int[] answer = {};
 
         Map<String, Integer> termData = new HashMap<>();  //terms DATA 저장
@@ -198,16 +221,24 @@ public class Lv1 {
             termData.put(type, data);
         }
 
-         int tday =  Integer.parseInt(today.replace(".", "")); //오늘날짜
-
+        int tday =  Integer.parseInt(today.replace(".", "")); //오늘날짜
+        Date dt ; 
         for (int i = 0; i < privacies.length; i++) {
             String date =  privacies[i].replace(".","").split(" ")[0]  ;
             String type = privacies[i].split(" ")[1];
 
+        
             SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
             Calendar cal = Calendar.getInstance();
-            Date dt = dtFormat.parse(date);
-            cal.setTime(dt);
+
+            try {
+                dt = dtFormat.parse(date);
+                cal.setTime(dt);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+
+            
             // cal.add(Calendar.YEAR,  year); //년
             cal.add(Calendar.MONTH, termData.get(type)); //월
             // cal.add(Calendar.DATE,  28 * termData.get(type)); //일

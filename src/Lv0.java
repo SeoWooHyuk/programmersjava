@@ -4,6 +4,66 @@ import java.util.Collections;
 
 public class Lv0 {
 
+
+
+    public Lv0()
+    {
+        System.out.println( solution1(40) + " |나이출력|");
+        System.out.println( solution2(10,3) + " |양꼬치|");
+        System.out.println( solution3(5500)[0] + "," +  solution3(5500)[1] + " |아이스아메리카노|");
+        System.out.println( solution4(1234) + " |자리수더하기|");
+        System.out.println( solution5(150000) + " |옷가게 할인 받기|");
+
+        int[] dot = {2,-4};
+        System.out.println( solution6(dot) + " |점의 위치 구하기|");
+
+        System.out.println( solution7("BCBdbe","B") + " |특정 문자 제거하기|");
+
+        int[] numbers = {1, 2, 3, 4, 5};
+        System.out.println( solution8(numbers) + " |최대값 만들기|");
+
+        int[] array = {0, 2, 3, 4};
+        System.out.println( solution9(array,1) + " |중복된 숫자 개수|");
+
+        int[] array2 = {149, 180, 192, 170};
+        System.out.println( solution10(array2,167) + " |머쓱이보다 키 큰사람|");
+
+        System.out.println( solution11("hello",3) + " |문자 반복출력하기|");
+        
+        System.out.println( solution12(100) + " |순서 쌍의 개수|");
+
+        int[] numbers2 = {1, 2, 3, 4, 5};
+        System.out.println( solution13(numbers2,1,3) + " |배열 자르기|");
+
+        System.out.println( solution14("bus") + " |모음 제거|");
+
+        int[] numbers3 = {1, 2, 100, -99, 1, 2, 3};
+        System.out.println( solution15(numbers3) + " |배열 2배 만들기|");
+
+        int[] array3 = {9, -1, 0};
+        System.out.println( solution16(array3) + " |중앙값 만들기|");
+
+        System.out.println( solution17("aAb1B2cC34oOp") + " |숨어있는 숫자의 덧셈|");
+
+        System.out.println( solution18(10) + " |짝수는 싫어요|");
+
+        String[] babbling = {"aya", "yee", "u", "maa", "wyeoo"};
+        System.out.println( solution19(babbling) + " |옹알이|");
+
+        System.out.println( solution20(4) + " |정수를 나선형으로 배치하기|");
+
+        int[][]  dots = {{1,4},{9,2},{3,8},{11,6}};
+        System.out.println( solution21(dots) + " |평행|"); //보류
+
+        System.out.println( solution22("He11oWor1d","lloWorl",2) + " |문자열 겹쳐쓰기|");
+
+        System.out.println( solution23("ab6CDE443fgh22iJKlmn1o","6CD") + " |문자열 안에 문자열|"); 
+
+        System.out.println( solution24("aaaaa","bbbbb") + " |문자열 섞기|");
+    }
+
+
+
     //나이 츨력
     // 머쓱이는 40살인 선생님이 몇 년도에 태어났는지 궁금해졌습니다.
     // 나이 age가 주어질 때, 2022년을 기준 출생 연도를 return 하는 solution 함수를 완성해주세요.
@@ -317,20 +377,145 @@ public class Lv0 {
         return answer;
     }
 
-    //정수를 나선형으로 배치하기
+    //정수를 나선형으로 배치하기 
     public int[][] solution20(int n) {
         int[][] answer = new int[n][n];
+        int value = 1; // 채워야 할 정수 값
+        int row = 0; // 현재 행 위치
+        int col = 0; // 현재 열 위치
+        int direction = 0; // 이동 방향 (0: 오른쪽, 1: 아래, 2: 왼쪽, 3: 위)
+
+        while (value <= n * n) { // 모든 정수 값을 배열에 채우면 종료
+            answer[row][col] = value++; // 현재 위치에 값을 채우고 다음 값으로 이동
+            System.out.println(row + " " + col);
+            // 다음 이동할 위치 계산
+            if (direction == 0) { // 오른쪽 방향으로 이동
+                if (col == n - 1 || answer[row][col + 1] != 0) {
+                    direction = 1;
+                    row++;
+                    System.out.println("아래방향이동");
+                } else {
+                    col++;
+                }
+            
+            } else if (direction == 1) { // 아래쪽 방향으로 이동
+                if (row == n - 1 || answer[row + 1][col] != 0) {
+                    direction = 2;
+                    col--;
+                    System.out.println("왼쪽방향이동");
+                } else {
+                    row++;
+                }
+            } else if (direction == 2) { // 왼쪽 방향으로 이동
+                if (col == 0 || answer[row][col - 1] != 0) {
+                    direction = 3;
+                    row--;
+                    System.out.println("위방향이동");
+                } else {
+                    col--;
+                }
+            } else if (direction == 3) { // 위쪽 방향으로 이동
+                if (row == 0 || answer[row - 1][col] != 0) {
+                    direction = 0;
+                    col++;
+                    System.out.println("오른쪽방향이동");
+                } else {
+                    row--;
+                }
+            }
+        }
+
 
         for (int i = 0; i < answer.length; i++) {
             for (int j = 0; j < answer.length; j++) {
-                
-
-
-                    //나중에 보류
-
-
+                System.out.print(answer[i][j]+",");
             }
+            System.out.println();
         }
+
+
+        return answer;
+    }
+
+    //평행
+    public int solution21(int[][] dots) { //보류
+        int answer = 0;
+        int a = 0;
+        int b = 0;
+
+        System.out.println(dots[0][0]);
+
+                
+    for (int i = 0; i < dots.length; i++) {
+        for (int j = 0; j < dots.length/2; j++) {
+            
+        }
+    }
+    
+        return answer;
+
+    }
+
+    //문자열 덮어쓰기
+    public String solution22(String my_string, String overwrite_string, int s) {
+        String answer = "";
+        System.out.println(my_string);
+        answer = my_string.substring(0,2);
+        System.out.println(answer);
+        answer = answer + overwrite_string;
+        System.out.println(answer);
+        answer = answer + my_string.substring(s+overwrite_string.length() ,my_string.length() );
+        return answer;
+    }
+
+    //문자열 안에 문자열
+    public int solution23(String str1, String str2) {
+        int answer = 0;
+
+        if(str1.contains(str2))
+        {
+            answer = 1;
+        }else
+        {
+            answer =  2;
+        }
+
+
+
+        return answer;
+    }
+
+    //문자열 섞기
+    public String solution24(String str1, String str2) {
+        String answer = "";
+
+        
+        char[] a =  str1.toCharArray();
+        char[] b =  str2.toCharArray();
+
+
+        for (int i = 0; i < b.length; i++) {
+            answer += String.valueOf(a[i]) + String.valueOf(b[i]); 
+            
+        }
+
+        System.out.println(answer);
+
+
+        // StringBuilder builder = new StringBuilder(answer);
+
+        // for (int i = 0; i < b.length; i++) {
+        //     builder.append(a[i]);
+        //     builder.append(b[i]);
+        // }
+        // System.out.println(builder.toString());
+
+        // for(int i = 0; i < str1.length() ; i++)
+        // {
+        //     answer =  answer + str1.substring(i,i+1);
+        //     answer = answer + str2.substring(i,i+1);
+
+        // }
         return answer;
     }
 
