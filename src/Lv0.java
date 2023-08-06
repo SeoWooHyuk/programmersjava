@@ -60,6 +60,39 @@ public class Lv0 {
         System.out.println( solution23("ab6CDE443fgh22iJKlmn1o","6CD") + " |문자열 안에 문자열|"); 
 
         System.out.println( solution24("aaaaa","bbbbb") + " |문자열 섞기|");
+
+        System.out.println( solution25("8542") + " |문자열 정수로 변환하기|");
+
+        System.out.println( solution26("banana","ana") + " |부분 문자열인지 확인하기|");
+
+
+        System.out.println( solution27("He110W0r1d",5) + " |문자열 뒤 n글자|");
+
+        System.out.println( solution28("ProgrammerS123",11) + " |문자열 앞 n글자|");
+
+
+        System.out.println( solution29("ABBAA","AABB") + " |문자열 바꿔서 찾기|");
+
+
+        String[] strArr = {"AAA","BBB","CCC","DDD"};
+        System.out.println( solution30(strArr) + " |배열에서 문자열 대소문자 바꾸기|");
+
+        String[] str_list = {"abc", "def", "ghi"};
+        System.out.println( solution31(str_list,"ef") + " |꼬리 문자열|");
+
+        int[] index_list ={16, 6, 5, 3, 12, 14, 11, 11, 17, 12, 7};
+        System.out.println( solution32("cvsgiorszzzmrpaqpe",index_list) + " |글자 이어붙여 문자열 만들기|");
+
+        System.out.println( solution33("AbCdEfG","aBc") + " |원하는 문자열 찾기|");
+
+        String[] my_strings = {"progressive", "hamburger", "hammer", "ahocorasick"};
+        int[][] parts = {{0, 4},{1,2},{3,5},{7,7}};
+        System.out.println( solution34(my_strings,parts) + " |부분문자열 이어붙인 문자열 만들기|");
+
+        System.out.println( solution35(3,10) + " |카운트 업|");
+
+
+        System.out.println( solution36("hi12392") + " |카운트 업|");
     }
 
 
@@ -67,7 +100,7 @@ public class Lv0 {
     //나이 츨력
     // 머쓱이는 40살인 선생님이 몇 년도에 태어났는지 궁금해졌습니다.
     // 나이 age가 주어질 때, 2022년을 기준 출생 연도를 return 하는 solution 함수를 완성해주세요.
-    public int solution1(int age) {        
+    public int solution1(int age) {
         int answer = 2022- age +1;
         return answer;
     }
@@ -519,4 +552,167 @@ public class Lv0 {
         return answer;
     }
 
+   
+
+    //문자열을 정수로 변환하기
+    public int solution25(String n_str) {
+        int answer = Integer.valueOf(n_str);
+        return answer;
+    }
+
+    //부분 문자열인지 확인하기
+    public int solution26(String my_string, String target) {
+        int answer = my_string.contains(target) ? 1 : 0 ;
+
+        return answer;
+    }
+
+     //문자열의 뒤의 n글자
+    public String solution27(String my_string, int n) {
+        String answer = "";
+
+        int a =  my_string.length() - n;
+
+        answer = my_string.substring(a);
+
+        return answer;
+    }
+
+    //문자열의 앞의 n글자
+    public String solution28(String my_string, int n) {
+        String answer = my_string.substring(0, n);
+        return answer;
+    }
+
+    //문자열 바꿔서 찾기
+    public int solution29(String myString, String pat) {
+        int answer = 0;
+        String str = "";
+        for (int i = 0; i < myString.length(); i++) {
+
+            if (myString.substring(i, i+1).equals("A")) {
+                str += "B"; 
+            }else
+            {
+                str += "A"; 
+            }
+        
+        }
+
+        answer = str.contains(pat) ? 1 : 0;
+        return answer;
+    }
+
+    //배열에서 문자열 대소문자 변환하기
+    public String[] solution30(String[] strArr) {
+        String[] answer = new String[strArr.length];
+
+
+        for (int i = 0; i < strArr.length; i++) {
+
+            answer[i]  =  i%2==0 ? strArr[i].toLowerCase() : strArr[i].toUpperCase();
+
+        }
+        return answer;
+    }
+
+    //꼬리 문자열
+    public String solution31(String[] str_list, String ex) {
+        String answer = "";
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < str_list.length; i++) {
+            if(str_list[i].contains(ex))
+            {
+                builder.append("");
+            }else
+            {
+                builder.append(str_list[i]);
+            }
+        }
+
+        answer = builder.toString();
+
+        return answer;
+    }
+
+    //글자 이어 붙여 문자열 만들기
+    public String solution32(String my_string, int[] index_list) {
+        String answer = "";
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < index_list.length; i++) {
+            builder.append(my_string.substring(index_list[i], index_list[i]+1));
+        }
+
+        answer = builder.toString();
+        return answer;
+    }
+
+    //원하는 문자열 찾기
+    public int solution33(String myString, String pat) {
+        int answer = 0;
+
+        if(myString.toLowerCase().contains(pat.toLowerCase()))
+        {
+            answer = 1;
+        }
+
+        return answer;
+    }
+
+    //부분 문자열 이어 붙여 문자열 만들기
+    public String solution34(String[] my_strings, int[][] parts) {
+        String answer = "";
+
+        for (int i = 0; i < parts.length; i++){
+            // System.out.println(parts[i][0]);
+            // System.out.println(parts[i][1]);
+
+        answer +=  my_strings[i].substring(parts[i][0], parts[i][1]+1);
+
+
+        }
+        return answer;
+    }
+
+    //카운트 업
+    public int[] solution35(int start, int end) {
+        int[] answer = new int[end - start +1];
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = start; i <= end; i++) {
+            list.add(i);
+
+        }
+
+        
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = list.get(i);
+        }
+        
+
+        return answer;
+    }
+
+    //문자열 정렬하기 (1)
+    public int[] solution36(String my_string) {
+
+
+        String num = my_string.replaceAll("[^0-9]", "");
+        int[] answer = new int[num.length()];
+
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = Integer.parseInt(num.substring(i, i+1));
+        }
+
+        Arrays.sort(answer);
+        
+
+        return answer;
+    }
+
+
 }
+
+
