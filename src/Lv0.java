@@ -52,7 +52,7 @@ public class Lv0 {
 
         System.out.println( solution20(4) + " |정수를 나선형으로 배치하기|");
 
-        int[][]  dots = {{1,4},{9,2},{3,8},{11,6}};
+        int[][]  dots = {{1,2},{2,1},{3,4},{4,5}};
         System.out.println( solution21(dots) + " |평행|"); //보류
 
         System.out.println( solution22("He11oWor1d","lloWorl",2) + " |문자열 겹쳐쓰기|");
@@ -473,18 +473,62 @@ public class Lv0 {
     //평행
     public int solution21(int[][] dots) { //보류
         int answer = 0;
-        int a = 0;
-        int b = 0;
 
-        System.out.println(dots[0][0]);
+        ArrayList<Double> list = new ArrayList<Double>();
 
-                
-    for (int i = 0; i < dots.length; i++) {
-        for (int j = 0; j < dots.length/2; j++) {
+        loop1:
+        for (int i = 0; i < dots.length; i++) {
+
             
+            for (int j = i; j < dots.length; j++) {
+
+                double tmp =  (double)(dots[i][1]-dots[j][1])/dots[i][0]-dots[j][0];
+          
+                // if(list.contains(tmp))
+                // {
+                //     answer = 1;
+                //     break loop1;
+                // }
+
+                list.add(tmp);
+            
+                
+            }
         }
-    }
-    
+
+        for (Double double1 : list) {
+            System.out.println(double1);
+        }
+
+
+        
+    //     int a = 0;
+    //     int a_1 = 0;
+    //     int b = 0;
+    //     int b_1 = 0;
+    // for (int i = dots.length-1; i >= 0; i--) {
+    //     if(i%2==0)
+    //     {
+    //         a =  dots[i][0] - a;
+    //         a_1 = dots[i][1] -  a_1;
+    //     }else
+    //     {
+    //         b =   dots[i][0] - b;
+    //         b_1 =   dots[i][1] - b;
+    //     }
+    // }
+
+    // if(Math.abs(a) == Math.abs(b) && Math.abs(a_1) == Math.abs(b_1))
+    // {
+    //     answer = 1;
+    // }else{
+    //     answer = 0;
+    // }
+
+    // System.out.println(Math.abs(a) + ":" + Math.abs(b) );
+    // System.out.println(Math.abs(a_1) + ":" + Math.abs(b_1) );
+
+
         return answer;
 
     }
@@ -504,7 +548,6 @@ public class Lv0 {
     //문자열 안에 문자열
     public int solution23(String str1, String str2) {
         int answer = 0;
-
         if(str1.contains(str2))
         {
             answer = 1;
@@ -512,8 +555,6 @@ public class Lv0 {
         {
             answer =  2;
         }
-
-
 
         return answer;
     }
@@ -552,7 +593,7 @@ public class Lv0 {
         return answer;
     }
 
-   
+
 
     //문자열을 정수로 변환하기
     public int solution25(String n_str) {
@@ -591,10 +632,10 @@ public class Lv0 {
         for (int i = 0; i < myString.length(); i++) {
 
             if (myString.substring(i, i+1).equals("A")) {
-                str += "B"; 
+                str += "B";
             }else
             {
-                str += "A"; 
+                str += "A";
             }
         
         }
