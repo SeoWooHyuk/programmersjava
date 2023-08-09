@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Lv0 {
 
@@ -109,6 +112,14 @@ public class Lv0 {
 
         int[] common = {2,4,8};
         System.out.println( solution42(common) + " |다음에 올 숫자|");
+
+        int[] arr2 = {0, 1, 2, 3, 4, 5};
+        int[] query = {4, 1, 2};
+        System.out.println( solution43(arr2,query) + " |배열 조각하기|");
+        System.out.println( solution43_1(arr2,query) + " |배열 조각하기2|");
+
+        int[] array4 = {1, 2};
+        System.out.println(solution44(array4) + " |최빈값 구하기|");
 
     }
 
@@ -859,6 +870,98 @@ public class Lv0 {
         }
     
         return answer ;
+    }
+
+    //배열조각하기
+    public int[] solution43(int[] arr, int[] query) {
+        for (int i = 0; i < query.length; i++) {
+            if (i % 2 == 0) {
+                arr = Arrays.copyOfRange(arr, 0, query[i]+1);
+            } else {
+                arr = Arrays.copyOfRange(arr, query[i], arr.length);
+                
+            }
+        }
+
+        return arr;
+    }
+
+    //배열조각하기2
+    public int[] solution43_1(int[] arr, int[] query) {
+        int left = 0; //홀수일때
+        int right = arr.length-1; //짝수일때
+        for(int i=0; i<query.length; i++) {
+            int q = query[i] + left;
+            if(i%2==0) {
+                right = q ;
+                System.out.println(right+"짝수일때");
+            } else {
+                left = q;
+                System.out.println(left+"홀수일때");
+            }
+        }
+        if(left > right)
+            return new int[]{-1};
+        return Arrays.copyOfRange(arr, left, right+1);
+    }
+
+    //최빈값 구하기
+    public int solution44(int[] array) {
+        int answer = 0;
+
+        ArrayList<Integer> list = new ArrayList();
+        
+
+        Set<Integer> uniqueArr = new HashSet<>();
+        for (int i = 0; i < array.length; i++) {
+            uniqueArr.add(array[i]);
+            list.add(array[i]);
+        }
+
+        int[] result = new int[uniqueArr.size()];
+        int index = 0;
+        for (int value : uniqueArr) {
+            result[index++] = value;
+        }
+
+
+        ArrayList<Integer> list2 = new ArrayList(); //리스트에 있는 중복값이 몇개인지 체크해서 저장 중복되는 수 사이즈
+        for (int i = 0; i < result.length; i++) {
+
+        if(result.length == 1)
+        {
+            list2.add(result[i]);
+            break;
+        }else{
+            list2.add(Collections.frequency(list, result[i]));  //객체가 몇번 등장했는지를 리턴해준다.
+        }
+        
+            
+            
+        }
+
+        int max = Collections.max(list2);
+
+        
+        boolean check = true;
+        
+        for (int i = 0; i < list2.size(); i++) {
+            if (list2.get(i) == max && Collections.frequency(list2, max) > 1) {  // 중복값이 있는 경우 출력
+                check = false;
+                System.out.println("최대값 중복: " + max);
+                break;
+            }
+        }
+
+        if(check)
+        {
+            answer = max;
+        }else{
+            answer = -1;
+        }
+    
+
+        return answer;
     }
 
 
