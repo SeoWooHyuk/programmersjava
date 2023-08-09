@@ -91,8 +91,25 @@ public class Lv0 {
 
         System.out.println( solution35(3,10) + " |카운트 업|");
 
-
         System.out.println( solution36("hi12392") + " |카운트 업|");
+
+        System.out.println( solution37(69.32) + " |정수 부분|");
+
+        int[] arr = {1, 2, 3, 100, 99, 98};
+        System.out.println( solution38(arr,3) + " |조건에 맞게 수열 변환하기3|");
+
+        int[] num_list = {5, 2, 1, 7, 5};
+        System.out.println( solution39(arr,3) + " |n번째 원소까지|");
+
+
+        System.out.println( solution40(3,12) + " |연속된 수의 합|");
+
+        //분수의 합 보류
+        System.out.println( solution41(3,12,6,5) + " |분수의 합|");
+
+        int[] common = {2,4,8};
+        System.out.println( solution42(common) + " |다음에 올 숫자|");
+
     }
 
 
@@ -753,7 +770,97 @@ public class Lv0 {
         return answer;
     }
 
+    //정수 부분
+    public int solution37(double flo) {
+        int answer = (int)flo;
+        return answer;
+    }
+
+    //조건에 맞게 수열 변환하기 3
+    public int[] solution38(int[] arr, int k) {
+
+        int[] answer = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            if(k%2 ==0 )
+            {
+                answer[i] = arr[i] + k;
+            }else{
+                answer[i] = arr[i] * k;
+            }
+        }
+
+    
+        return answer;
+    }
+
+
+    //n 번째 원소까지
+    public int[] solution39(int[] num_list, int n) {
+        int[] answer = new int[n];
+        
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = num_list[i];
+        }
+
+        return answer;
+    }
+
+    //연속된 수의 합
+    public int[] solution40(int num, int total) {
+        int[] answer = new int[num];
+
+        int start = (total/num) - ((num - 1)/2);
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = start;
+            start++;
+        }
+
+        for (int i : answer) {
+            System.out.println(i);
+        }
+        return answer;
+    }
+
+    //분수의 덧셈
+    public int[] solution41(int numer1, int denom1, int numer2, int denom2) { //보류
+        int[] answer = {};
+        int a = 0;
+        int b = 0;
+        if (denom1 != denom2) {
+            
+        }
+        return answer;
+    }
+
+
+    //다음에 올숫자
+    public int solution42(int[] common) {
+        int answer = 0;
+
+        int a = common[2] - common[1];
+
+    
+        int b = 0;
+
+        for (int i = 0; i < common.length-1; i++) {
+            if(common[i] == 0)
+            {
+                continue;
+            }
+            
+            b = common[i+1] / common[i];
+            
+        }
+    
+        if (common[1] - common[0] == common[2] - common[1]) {
+            answer = a + common[common.length-1];
+        }else{
+            answer = b * common[common.length-1];
+        }
+    
+        return answer ;
+    }
+
 
 }
-
 
