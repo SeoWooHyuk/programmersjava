@@ -2,6 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +30,22 @@ public class Lv1 {
         System.out.println( solution6("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간1|");
 
         System.out.println( solution6_1("2022.05.19",terms,privacies) + " |개인정보 수집기간 유효기간2|");
+
+        System.out.println( solution7(5,3) + " |두 정수의 합|");
+
+        System.out.println( solution8(626331) + " |콜라츠 츠축|");
+
+        String[] seoul = {"Jane", "Kim"};
+        System.out.println( solution9(seoul) + " |서울에서 김서방 찾기|");
+
+        int[] arr = {3,2,6};
+        System.out.println( solution10(arr,10) + " |나누어 떨어지는 숫자배열|");
+
+        int[] absolutes = {4,7,12};
+        boolean[] signs = {true,false,true};
+        System.out.println( solution11(absolutes,signs) + " |음양 더하기|");
+
+        System.out.println( solution12("01033334444") + " |핸드폰 번호가리기|");
     }
 
     //짝수와 홀수
@@ -222,7 +239,7 @@ public class Lv1 {
         }
 
         int tday =  Integer.parseInt(today.replace(".", "")); //오늘날짜
-        Date dt ; 
+        Date dt ;
         for (int i = 0; i < privacies.length; i++) {
             String date =  privacies[i].replace(".","").split(" ")[0]  ;
             String type = privacies[i].split(" ")[1];
@@ -258,4 +275,167 @@ public class Lv1 {
         return answer;
     }
 
+
+    //두 정수 사이의 합
+    public long solution7(int a, int b) {
+        long answer = 0;
+
+        int[] test = new int[2];
+        test[0] = a;
+        test[1] = b;
+
+        // Arrays.sort(test);
+
+        for (int i = 0; i < test.length; i++) { //선택정렬
+            for (int j = i+1; j < test.length; j++) {
+                if(test[i] > test[j]) //오름차순
+                {
+                int temp = test[i];
+                test[i] = test[j];
+                test[j] = temp;
+                }
+            }
+        }
+
+
+
+        for (int i = test[0]; i <= test[1]; i++) {
+            answer += i;
+        }
+
+        return answer;
+    }
+
+
+
+    //콜라츠 추측
+    public int solution8(int num) {
+        int answer = 0;
+        int count = 0;
+
+        long  num1 = num;
+        if(num == 1)
+        {
+            
+        }else{
+            while (true) {
+            if(num1 % 2 == 0)
+            {
+                num1 /= 2;
+            }else
+            {
+                num1 = (num1*3)+1;
+            }
+
+            if(num1 == 1 )
+            {
+                count = count +1;
+                break;
+            }
+
+            if(count == 500)
+            {
+                count = -1;
+                break;
+            }
+
+            count++;
+
+        }
+        }
+        
+
+        answer = count;
+        return answer;
+    }
+
+
+    //서울 에서 김서방 찾기
+    public String solution9(String[] seoul) {
+        String answer = "";
+        int i;
+        for (i = 0; i < seoul.length; i++) {
+            if(seoul[i].contains("Kim"))
+            {
+                break;
+            }
+        }
+
+        answer = "김서방은 "+i+"에 있다";
+        return answer;
+    }
+
+    //나누어 떨어지는 숫자 배열
+    public int[] solution10(int[] arr, int divisor) {
+        
+        
+        ArrayList<Integer> list = new ArrayList();
+        int count =0;
+        for (int i = 0; i < arr.length;  i++) {
+            
+            if(arr[i] % divisor == 0)
+            {
+                list.add(arr[i]);
+                count++;
+            }
+        }
+
+        if(count == 0)
+        {
+            list.add(-1);
+        }
+
+
+        Collections.sort(list);
+
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
+
+        int[] answer = new int[list.size()];
+        
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+
+        return answer;
+    }
+
+    //음양더하기
+    public int solution11(int[] absolutes, boolean[] signs) {
+        int answer = 0;
+
+        for (int i = 0; i < signs.length; i++) {
+            if(signs[i])
+            {
+                answer += absolutes[i];
+            }else
+            {
+                answer += (absolutes[i])*-1;
+            }
+        }
+
+        return answer;
+    }
+
+    //핸드폰 번호 가리기
+    public String solution12(String phone_number) {
+        String answer = "";
+
+
+        String a = phone_number.substring(phone_number.length()-4,phone_number.length() );
+        String b = phone_number.substring(0,phone_number.length()-4 ).replaceAll("[0-9]", "*");
+        answer = b+a;
+
+        phone_number.replaceAll(".(?=.{4})", "*"); //정규식만 사용
+        
+
+        return answer;
+    }
+
+    //없는 숫자 더하기
+    public int solution(int[] numbers) {
+        int answer = -1;
+        return answer;
+    }
 }

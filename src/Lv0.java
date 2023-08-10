@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -118,7 +120,7 @@ public class Lv0 {
         System.out.println( solution43(arr2,query) + " |배열 조각하기|");
         System.out.println( solution43_1(arr2,query) + " |배열 조각하기2|");
 
-        int[] array4 = {1, 2};
+        int[] array4 = {1,2};
         System.out.println(solution44(array4) + " |최빈값 구하기|");
 
     }
@@ -910,41 +912,39 @@ public class Lv0 {
         int answer = 0;
 
         ArrayList<Integer> list = new ArrayList();
-        
 
-        Set<Integer> uniqueArr = new HashSet<>();
+        Set<Integer> uniqueArr = new HashSet<>(); //중복값 제거 저장 해쉬맵특성 중복값은 키값 으로 제외
         for (int i = 0; i < array.length; i++) {
             uniqueArr.add(array[i]);
-            list.add(array[i]);
+            list.add(array[i]); //중복값 제거안한값 그대로 리스트에 저장
         }
 
-        int[] result = new int[uniqueArr.size()];
+        Map<Integer, Integer> frequencyMap = new HashMap<>(); //ArrayList에서 가장 빈도수가 높은 원소를 찾아 출력하는 방법은 다음과 같습니다.
+        for (Integer number : list) {
+            frequencyMap.put(number, frequencyMap.getOrDefault(number, 0) + 1);
+        }
+
+        Integer mostFrequentNumber = Collections.max(frequencyMap.entrySet(), Map.Entry.comparingByValue()).getKey();
+        System.out.println("가장 빈도수가 높은 숫자: " + mostFrequentNumber);
+
+
+
+        int[] result = new int[uniqueArr.size()]; //중복값 제거한거를 배열로 다시저장
         int index = 0;
         for (int value : uniqueArr) {
             result[index++] = value;
         }
 
+        boolean hasDuplicates = list.stream().distinct().count() < list.size(); // 중복값 있는지 체크
 
         ArrayList<Integer> list2 = new ArrayList(); //리스트에 있는 중복값이 몇개인지 체크해서 저장 중복되는 수 사이즈
         for (int i = 0; i < result.length; i++) {
-
-        if(result.length == 1)
-        {
-            list2.add(result[i]);
-            break;
-        }else{
+        
             list2.add(Collections.frequency(list, result[i]));  //객체가 몇번 등장했는지를 리턴해준다.
         }
-        
-            
-            
-        }
 
-        int max = Collections.max(list2);
-
-        
-        boolean check = true;
-        
+        boolean check = true; //빈도수가 같은 값 존재했을때 -1출령용도
+        int max = Collections.max(list2);  //빈도수가 같은 값 존재했을때 -1출령용도
         for (int i = 0; i < list2.size(); i++) {
             if (list2.get(i) == max && Collections.frequency(list2, max) > 1) {  // 중복값이 있는 경우 출력
                 check = false;
@@ -953,14 +953,35 @@ public class Lv0 {
             }
         }
 
-        if(check)
-        {
-            answer = max;
-        }else{
-            answer = -1;
-        }
-    
+        int max2 = Collections.max(list);
 
+
+        if(hasDuplicates)
+        {
+            if(check)//빈도수가 같은 값 존재했을때 -1출령용도
+            {
+                answer = mostFrequentNumber;
+            }else{
+                answer = -1;
+            }
+
+        }else{
+            if(check)//빈도수가 같은 값 존재했을때 -1출령용도
+            {
+                answer = max2;
+            }else{
+                answer = -1;
+            }
+            
+        }
+
+
+        return answer;
+    }
+
+    //다항식 더하기
+    public String solution45(String polynomial) {
+        String answer = "";
         return answer;
     }
 
